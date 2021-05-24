@@ -23,25 +23,28 @@ export class RoomComponent implements OnInit {
   private socket;
   constructor(
     private route: ActivatedRoute,
+   
     
   ) {
-    const config: SocketIoConfig = { url: 'https://test-app-io.herokuapp.com', options: {} };
-    this.socket = new Socket(config)
+    
   }
 
   ngOnInit() {    
     console.log(`Initialize Peer with id ${this.currentUserId}`);
-    const myPeer = new Peer(this.currentUserId, {
-    host: '/test-app-peer.herokuapp.com',
-      port: 80,
-      secure: false,       
-    });
+    // const myPeer = new Peer(this.currentUserId, {
+    // host: '/test-app-peer.herokuapp.com',
+    //   port: 80,
+    //   secure: false,       
+    // });
     // const myPeer = new Peer(this.currentUserId, {
     //   host: '/',
     //   port: 3001,
     // });
 
-
+    const myPeer = new Peer(this.currentUserId, { url: 'https://9000-magenta-dinosaur-xc650j6e.ws-eu07.gitpod.io' });
+    const config: SocketIoConfig = { url: '/', options: {} };
+    this.socket = new Socket(config)
+    
     this.route.params.subscribe((params) => {
       console.log(params);
       console.log(`Suscription to Peer.open with id ${this.currentUserId}`);
